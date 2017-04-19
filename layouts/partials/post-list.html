@@ -1,0 +1,45 @@
+                {{- $pl := .Permalink }}
+                <div class="post-container box-shadow">
+                    
+                    <div class="thumbnail" style="background-color: rgb(0, 178, 255);{{- if .Params.banner }}background-image: url('{{ .Params.Banner }}'){{- end }}"></div>
+                    
+                    <div class="post-list">
+                        <div class="post-details">
+                            <p class="post-date">{{ .Date.Format "Jan 2, 2006" }}</p>
+                            {{- if .Params.tags }}
+                                {{- $tlen := len .Params.tags }}
+                            <p class="post-tag">
+                                {{- if ge ( $tlen ) 1 -}}
+                                    {{- if ge ( $tlen ) 2 }}
+                                        {{- if le ( $tlen ) 3 }}
+                                            {{- range first ( sub $tlen 1 ) .Params.tags -}}
+                                                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>{{ " | " }}
+                                            {{- end }}
+                                            {{- range first 1 ( after ( sub $tlen 1 ) .Params.tags ) -}}
+                                                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                                            {{- end }}
+                                        {{- else }}
+                                            {{- range first 2 .Params.tags -}}
+                                                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>{{ " | " }}
+                                            {{- end }}
+                                            {{- range first 1 ( after 2 .Params.tags ) -}}
+                                                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                                            {{- end }}
+                                        {{- end }}
+                                    {{- else }}
+                                        {{- range first 1 .Params.tags -}}
+                                            <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                                        {{- end }}
+                                    {{- end }}
+                                {{- end -}}
+                        </p>
+                            {{- end }}
+                        </div>
+                        <a href="{{ $pl }}">
+                            <h4 class="post-list-title text-title">{{ .Title }}</h4>
+                        </a>
+                        <p class="post-list-summary">{{ .Summary }}</p>
+                        <div class="readmore"><a href="{{ $pl }}">Enter this page</a></div>
+                    </div>
+                </div>
+                    <div class="post-list-separator"></div>

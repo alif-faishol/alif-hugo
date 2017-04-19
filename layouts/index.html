@@ -1,0 +1,70 @@
+<head>
+    <!-- meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-visible/1.2.0/jquery.visible.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/is-in-viewport/2.4.2/isInViewport.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round|Roboto:400,700|Roboto+Condensed:400,700|PT+Sans:400,400i,700,700i" rel="stylesheet">
+
+    <!-- local dependency -->
+    <link href='/css/EricMeyersCSSReset.css' type='text/css' rel='stylesheet' />
+    <link href='/css/alif-hugo.css' type='text/css' rel='stylesheet' />
+    <link href='/css/post-list.css' type='text/css' rel='stylesheet' />
+    <link href='/css/homepage.css' type='text/css' rel='stylesheet' />
+    <script src="/js/default.js"></script>
+
+    <title>Alif Faishol | {{ .Title }}</title>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="navbar">
+            <div class="section">
+                <div class="navbutton-container">
+                    <div class="navbutton-dropdown">
+                        <a>Tags<i class="fa fa-sort-desc" style="padding-left: 10px;" aria-hidden="true"></i></a>
+                        <ul class="tags-dropdown">
+                            {{- range $name, $taxonomy := .Site.Taxonomies.tags }}
+                            <li>
+                                <a class="dropdown-list" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+                            </li>
+                            {{- end }}
+                        </ul>
+                    </div>
+                    <div class="navbutton">
+                        <a>Portfolio</a>
+                    </div>
+                </div>
+                <a class="logo" href="{{ .Site.BaseURL }}"></a>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="post-list-container">
+            <h2 class="list-title"><a href="/post">Recent Posts</a></h2>
+                {{- range first 4 (where .Data.Pages "Section" "post") }}
+                {{- partial "post-list.html" . }}
+                {{- end }}
+                <a href="/post">
+                    <div class="morepost box-shadow">
+                        <p><i class="fa fa-caret-right" aria-hidden="true"></i> More Posts</p>
+                    </div>
+                </a>
+        </div>
+        <div class="posts-homepage-container">
+            <h2><a href="/portfolio">Portfolio</a></h2>
+            {{- range first 6 (where .Data.Pages.ByDate "Section" "portfolio") }}
+            <a href="{{ .Permalink }}">
+                <div class="posts-homepage-portfolio">
+                    <h4 class="text-title">{{ .Title }}</h4>
+                    <p>{{ .Summary }}</p>
+                </div>
+            </a>
+            {{- end }}
+        </div>
+    </div>
+</body>

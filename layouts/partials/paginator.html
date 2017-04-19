@@ -1,0 +1,52 @@
+            {{- $rls := 3 }}
+            {{- $sb := .Site.BaseURL }}
+            {{- $p := .Paginator }}
+            {{- if gt .Paginator.TotalPages 1 }}
+            <div class="pager-nav">
+                {{- if .Paginator.HasNext }}
+                <a href="{{ $sb }}{{ .Paginator.Next.URL }}">
+                    <div class="pager-next">Older</div>
+                </a>
+                {{- end }}
+                {{- if $p.HasPrev }}
+                <a href="{{ $sb }}{{ $p.Prev.URL }}">
+                    <div class="pager-prev">Newer</div>
+                </a>
+                {{- end }}
+                <div class="pager-number">
+                    <ul>
+                        {{- if gt $p.TotalPages ( add ( mul 2 $rls ) 1 ) }}
+                        {{- if gt $p.PageNumber $rls }}
+                        <li><a href="{{ $sb }}{{ $p.First.URL }}">1</a></li>
+                        {{- if gt $p.PageNumber ( add $rls 1 ) }}
+                        <li><a href="#" class="pager-arrow"><i class="fa fa-caret-left" aria-hidden="true"></i></a></li>
+                        {{- end }}{{ end }}
+                        {{- range .Paginator.Pagers }}
+                        {{- if lt $p.PageNumber ( add $rls 1 ) }}
+                        {{- if le .PageNumber ( mul 2 $rls ) }}
+                        <li{{ if eq . $p }} class="pager-active" {{ end }}><a href="{{ $sb }}{{ .URL }}">{{ .PageNumber }}</a></li>
+                        {{- end }}{{ end }}
+                        {{- if gt $p.PageNumber $rls }}
+                        {{- if lt $p.PageNumber ( sub $p.TotalPages ( sub $rls 1 ) ) }}
+                        {{- if lt .PageNumber ( add $p.PageNumber $rls ) }}
+                        {{- if gt .PageNumber ( sub $p.PageNumber $rls ) }} 
+                        <li{{ if eq . $p }} class="pager-active" {{ end }}><a href="{{ $sb }}{{ .URL }}">{{ .PageNumber }}</a></li>
+                        {{- end }}{{ end }}{{ end }}{{ end }}{{ end }}
+                        {{- if ge $p.PageNumber ( sub $p.TotalPages ( sub $rls 1 ) ) }}
+                        {{- range last ( mul 2 $rls ) $p.Pagers }} 
+                        <li{{ if eq . $p }} class="pager-active" {{ end }}><a href="{{ $sb }}{{ .URL }}">{{ .PageNumber }}</a></li>
+                        {{- end }}{{ end }}
+                        {{- if lt $p.PageNumber ( sub $p.TotalPages $rls ) }}
+                        <li><a href="#" class="pager-arrow"><i class="fa fa-caret-right" aria-hidden="true"></i></a></li>
+                        {{- end }}
+                        {{- if lt $p.PageNumber ( sub $p.TotalPages ( sub $rls 1 ) ) }}
+                        <li><a href="{{ $sb }}{{ $p.Last.URL }}">{{ $p.TotalPages }}</a></li>
+                        {{- end }}{{ end }}
+                        {{- if le $p.TotalPages ( add ( mul 2 $rls ) 1 ) }}
+                        {{- range $p.Pagers }}
+                        <li {{ if eq . $p }} class="pager-active" {{ end }}><a href="{{ $sb }}{{ .URL }}">{{ .PageNumber }}</a></li>
+                        {{- end }}{{ end }}
+                    </ul>
+                </div>
+            </div>
+            {{- end }}

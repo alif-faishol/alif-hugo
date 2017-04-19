@@ -1,0 +1,12 @@
+.morepost {
+  background-color: rgb(0, 178, 255);
+  padding: 10px;
+  text-align: right;
+  top: -20px;
+  position: relative;
+}
+
+.morepost > p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+}

@@ -50,14 +50,16 @@
                 {{- partial "post-list.html" . }}
                 {{- end }}
                 <a href="/post">
+                    {{- if gt ( len ( where .Data.Pages "Section" "post" ) ) 4 }}
                     <div class="morepost">
-                        <p class="after"> More Posts</p>
+                        <p class="after">More Posts</p>
                         <p class="initial">...</p>
                     </div>
+                    {{- end }}
                 </a>
         </div>
         <div class="posts-homepage-container">
-            <h2><a href="/portfolio">Portfolio</a></h2>
+            <h2 class="list-title"><a href="/portfolio">Portfolio</a></h2>
             {{- range first 6 (where .Data.Pages.ByDate "Section" "portfolio") }}
             <a href="{{ .Permalink }}">
                 <div class="posts-homepage-portfolio">

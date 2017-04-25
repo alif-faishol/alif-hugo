@@ -6,15 +6,13 @@
 
     <!-- cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-visible/1.2.0/jquery.visible.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/is-in-viewport/2.4.2/isInViewport.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Crete+Round|Roboto:400,700|Roboto+Condensed:400,700|PT+Sans:400,400i,700,700i" rel="stylesheet">
 
     <!-- local dependency -->
+    <link href='/css/EricMeyersCSSReset.css' type='text/css' rel='stylesheet' />
     <link href='/css/alif-hugo.css' type='text/css' rel='stylesheet' />
     <link href='/css/single.css' type='text/css' rel='stylesheet' />
 
@@ -48,29 +46,51 @@
                 <a class="logo" href="{{ .Site.BaseURL }}"></a>
             </div>
         </div>
-        <div id="post-detail">
-            <div>
-                <p class="kiri"><i class="fa fa-file-text" style="padding-right: 5px;" aria-hidden="true"></i>Title: {{ .Title }}</p>
-                <p class="kanan"><i class="fa fa-calendar" style="padding-right: 5px;" aria-hidden="true"></i> {{ .Date.Format "Mon, Jan 2, 2006" }}</p>
-            </div>
-        </div>
     </div>
 
-    <div class="container">
+    <div class="main-container">
         <!-- image banner -->
         {{- if .Params.Banner -}}
-        <div class="banner-container">
+        <div class="banner-container box-shadow">
             <div class="banner" style="background-image: url('{{ .Params.Banner }}');"></div>
         </div>
         {{- end -}}
 
         <!-- content -->
-        <div class="content">
-            <div class="text-content-container">
-                <h1 class="text-title">{{ .Title }}</h1>
-                <h5 class="text-date">{{ .Date.Format "Mon, Jan 2, 2006" }}{{- range .Params.tags }}{{ . }}{{- end }}</h5>
-                <div id="text-content"> {{ .Content }} </div>
+        <div class="box-shadow text-content-container">
+            <div class="post-details">
+                <p class="post-date">{{ .Date.Format "Jan 2, 2006" }}</p>
+                {{- if .Params.tags }}
+                {{- $tlen := len .Params.tags }}
+                <p class="post-tag">
+                {{- if ge ( $tlen ) 1 -}}
+                {{- if ge ( $tlen ) 2 }}
+                {{- if le ( $tlen ) 3 }}
+                {{- range first ( sub $tlen 1 ) .Params.tags -}}
+                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>{{ " | " }}
+                {{- end }}
+                {{- range first 1 ( after ( sub $tlen 1 ) .Params.tags ) -}}
+                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                {{- end }}
+                {{- else }}
+                {{- range first 2 .Params.tags -}}
+                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>{{ " | " }}
+                {{- end }}
+                {{- range first 1 ( after 2 .Params.tags ) -}}
+                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                {{- end }}
+                {{- end }}
+                {{- else }}
+                {{- range first 1 .Params.tags -}}
+                <a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+                {{- end }}
+                {{- end }}
+                {{- end -}}
+                </p>
+                {{- end }}
             </div>
+            <h2 class="text-title" style="font-size: 25px; line-height: 1.5em; margin-bottom: 50px; margin-top: 30px">{{ .Title }}</h2>
+            <div id="text-content"> {{ .Content }} </div>
         </div>
 
     </div>

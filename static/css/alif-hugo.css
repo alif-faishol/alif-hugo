@@ -1,13 +1,6 @@
-.text-content-container {
-    width: 65%;
-    float: left;
-    padding: 30px 50px 50px 50px;
-}
-#text-content {
-    font-family: 'PT Sans', sans-serif;
-    font-size: 17px;
-    line-height: 1.8em;
-    word-wrap: break-word;
+br, p {
+    display: block;
+    margin: 10px 0px;
 }
 
 .text-title {
@@ -138,22 +131,6 @@ li {
 }
 
 
-div.banner-container {
-    max-width: inherit;
-    height: 300px;
-}
-
-div.banner {
-    height: 400px;
-    width: inherit;
-    margin: auto;
-    position: fixed;
-    top: 23px;
-    overflow: hidden;
-    background: no-repeat center;
-    background-size: cover;
-    transition: top 0.1s;
-}
 
 a, a:visited {
     text-decoration: none;

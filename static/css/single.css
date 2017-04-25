@@ -10,39 +10,50 @@
     font-size: 0.9em;
 }
 
-#post-detail {
-    width: 100%;
-    height: 25px;
-    visibility: hidden;
-    background-color: rgb(0, 178, 255);
-    line-height: 1.2em;
-    overflow: hidden;
+#text-content {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    line-height: 1.8em;
+    word-wrap: break-word;
 }
 
-#post-detail div p {
-    margin: 2px 5px;
-    visibility: hidden;
-    font-size: 0.9em;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: rgb(40, 40, 40);
+.text-content-container {
+    padding: 30px 50px 50px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#post-detail div {
-    max-width: 1000px;
+.banner-container {
+    width: inherit;
+    height: 300px;
+}
+
+.banner {
+    height: 300px;
+    width: inherit;
     margin: auto;
-    padding: 0px 20px;
+    overflow: hidden;
+    background: no-repeat center;
+    background-size: cover;
+    transition: top 0.1s;
 }
 
-.kanan {
+.post-details {
+    overflow: hidden;
+    height: 15px;
+    width: 100%;
+    white-space: nowrap;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #5C5C5C;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.post-date {
+    display: inline;
+}
+
+.post-tag {
     float: right;
 }
-
-.kiri {
-    float: left;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    min-width: 126px;
-    white-space: nowrap;
-}
-
-

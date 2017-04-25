@@ -1,4 +1,4 @@
-br, p {
+#text-content br, #text-content p {
     display: block;
     margin: 10px 0px;
 }

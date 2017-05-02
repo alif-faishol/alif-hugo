@@ -19,3 +19,14 @@
     opacity: 100;
 }
 
+
+
+.post-portfolio-container {
+    height: 200px;
+}
+
+.slides-list {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}

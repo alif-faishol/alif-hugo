@@ -13,6 +13,8 @@
     <link href='/css/alif-hugo.css' type='text/css' rel='stylesheet' />
     <link href='/css/post-list.css' type='text/css' rel='stylesheet' />
     <link href='/css/homepage.css' type='text/css' rel='stylesheet' />
+    <link href='/slick/slick.css' type='text/css' rel="stylesheet" />
+    <link href='/slick/slick-theme.css' type='text/css' rel="stylesheet" />
     <script src="/js/default.js"></script>
 
     <title>Alif Faishol | {{ .Title }}</title>
@@ -54,16 +56,18 @@
                     {{- end }}
                 </a>
         </div>
-        <div class="posts-homepage-container">
+        <div class="post-portfolio-container">
             <h2 class="list-title"><a href="/portfolio">Portfolio</a></h2>
+            <div class="portfolio-slides">
             {{- range first 6 (where .Data.Pages.ByDate "Section" "portfolio") }}
-            <a href="{{ .Permalink }}">
-                <div class="posts-homepage-portfolio">
-                    <h4 class="text-title">{{ .Title }}</h4>
-                    <p>{{ .Summary }}</p>
+            <a class="box-shadow" href="{{ .Permalink }}">
+                <div class='slides-list' style="background-color: rgb(0, 178, 255);{{- if .Params.banner }}background-image: url('{{ .Params.Banner }}'){{- end }}">
                 </div>
             </a>
             {{- end }}
+            </div>
         </div>
+        <script src="/js/homepage.js"></script>
     </div>
+    <script src="/slick/slick.min.js"></script>
 </body>

@@ -128,6 +128,7 @@ li {
     box-shadow: 0 0 5px #a6a6a6;
     background-color: white;
     overflow: hidden;
+    display: block;
 }
 
 

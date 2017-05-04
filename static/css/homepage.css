@@ -19,10 +19,14 @@
     opacity: 100;
 }
 
+.portfolio-slides {
+    height: 500px;
+    margin-bottom: 20px;
+}
 
-
-.post-portfolio-container {
+.portfolio-slides-nav {
     height: 200px;
+    margin-bottom: 20px;
 }
 
 .slides-list {
